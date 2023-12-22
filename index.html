@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WebWorkers, ServiceWorkers</title>
+<script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
+<body>
+  <h1>WebWorkers, ServiceWorkers</h1>
+  <h2>WebWorkers</h2>
+  <button class="btn">SEND</button>
+  <script type="module">
+    const worker = new Worker('./worker.js');
+
+    const btn = document.querySelector('.btn');
+    btn.addEventListener('click', (e) => {
+      worker.postMessage('calculate');
+    })
+
+    worker.addEventListener('message', (event) => {
+	  console.log(event.data);
+	})
+  </script>
+</body>
+</html>
